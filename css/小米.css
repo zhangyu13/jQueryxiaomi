@@ -2,7 +2,7 @@
 * @Author: lenovo
 * @Date:   2018-08-03 08:36:37
 * @Last Modified by:   lenovo
-* @Last Modified time: 2018-09-14 00:55:40
+* @Last Modified time: 2018-09-15 13:47:36
 */
 *{
 	margin: 0;
@@ -1249,6 +1249,18 @@ nav .container .right .gw:hover{
 	left: 296px;
 /* 	margin-left: 35px; */
 }
+.content .container .linke ul li.one .zx{
+	left: 0;
+}
+.content .container .linke ul li.two .zx{
+	left: 0;
+}
+.content .container .linke ul li.three .zx{
+	left: 0;
+}
+.content .container .linke ul li.four  .zx{
+	left: 0;
+}
 .content .container .linke ul li .right{
 	width: 20px;
 	height: 50px;
@@ -1261,6 +1273,7 @@ nav .container .right .gw:hover{
 	top: 0;
 	bottom: 0;
 	margin:auto 0;
+	cursor: pointer;
 }
 .content .container .linke ul li .left{
 	width: 20px;
@@ -1274,6 +1287,7 @@ nav .container .right .gw:hover{
 	top: 0;
 	bottom: 0;
 	margin:auto 0;
+	cursor: pointer;
 }
 .content .container .linke ul li:hover .right{
 	background-color: rgba(0, 0, 0, 0.3);

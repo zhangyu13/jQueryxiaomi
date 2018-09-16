@@ -2,7 +2,7 @@
 * @Author: lenovo
 * @Date:   2018-08-31 17:12:06
 * @Last Modified by:   lenovo
-* @Last Modified time: 2018-09-14 00:59:22
+* @Last Modified time: 2018-09-15 10:36:55
 */
 // 双下标自动轮播   banner_oi
 // 双下标点击轮播   banner_dj
@@ -185,85 +185,3 @@ function banner_dj(imgs,dots,leftBtn,rightBtn,widths,active){
          }
 	 }
 }
-
-
-
-
-// function banner_dj(imgs,dots,leftBtn,rightBtn,widths,active){
-//      let now=0,next=0;
-//      let flag=true;
-//      function move(){
-//         next++;
-//         if(next==imgs.length){
-//             next=0;
-//         }
-//         imgs[next].style.left=widths+"px";
-//         animate(imgs[now],{left:-widths});
-//         animate(imgs[next],{left:0},function(){
-//             flag=true;
-//         });
-//         dots[now].classList.remove("active");
-//         dots[next].classList.add("active");
-//         now=next;
-//      }
-//      function movel(){
-//         next--;
-//         if(next==-1){
-//             next=imgs.length-1;
-//         }
-//         // 确保下一张图永远在最左侧
-//         imgs[next].style.left=-widths+"px";
-//         animate(imgs[now],{left:widths});
-//         animate(imgs[next],{left:0},function(){
-//             flag=true;
-//         });
-//         dots[now].classList.remove("active");
-//         dots[next].classList.add("active");
-//         now=next;
-//      }
-//      // 在一次点击效果没有执行完成之前不能开始下一次的执行
-//      leftBtn.onclick=function(){
-//         if(!flag){
-//             return;
-//         }
-//         if(now==0){
-//             return;
-//         }
-//         flag=false;
-//         movel()
-//      }
-//      rightBtn.onclick=function(){
-//         if(!flag){
-//             return;
-//         }
-//         if(now==imgs.length-1){
-//             return;
-//         }
-//         flag=false;
-//         move()
-//      }
-//      for(let i=0;i<dots.length;i++){
-//          dots[i].onclick=function () {
-//              if(now==i){
-//                  return;
-//              }
-//              else if(now<i){
-//                  imgs[i].style.left=`${widths}px`;
-//                  animate(imgs[i],{left:0});
-//                  animate(imgs[now],{left:-widths});
-//                  dots[now].classList.remove("active");
-//                  dots[i].classList.add("active");
-//                  next=now=i;
-//              }
-//              else if(now>i){
-//                  imgs[i].style.left=`${-widths}px`;
-//                  animate(imgs[i],{left:0});
-//                  animate(imgs[now],{left:widths});
-//                  dots[now].classList.remove("active");
-//                  dots[i].classList.add("active");
-//                  next=now=i;
-//              }
-
-//          }
-//      }
-// }

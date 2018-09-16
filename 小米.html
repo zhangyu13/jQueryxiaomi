@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="https://at.alicdn.com/t/font_779522_6lflwize43m.css">
 	<link rel="stylesheet" href="https://at.alicdn.com/t/font_824775_jom8u1ibaag.css">
 	<link rel="stylesheet" href="css/小米.css">
+	<link rel="shortcut icon" href="image/ico.ico">
 	<script src="封装函数.js"></script>
 	<script src="animate.js"></script>
 	<script src="js/jquery-3.3.1.js"></script>
@@ -48,11 +49,11 @@
 </nav>
 <script>
 	$("nav .gw").mouseenter(function(){
-		$("nav .gw .xl").clearQueue.slideDown("slow");
+		$("nav .gw .xl").clearQueue().slideDown("slow");
 	})
 
 	$("nav .gw").mouseleave(function(){
-		$("nav .gw .xl").clearQueue.slideUp("slow");
+		$("nav .gw .xl").clearQueue().slideUp("slow");
 	})
 </script>
 <div class="figure">
@@ -1366,6 +1367,27 @@
 		    		<div class="date">21</div>
 		    	</div>
 	    </div>
+<script>
+let date=document.querySelectorAll(".date");
+fn();
+setInterval(fn, 1000);
+function fn(){
+	let now=new Date();
+	let future=new Date(2018,8,20);
+	let time=(future.getTime()-now.getTime())/1000;
+	let arr=[];	
+	let hour=Math.floor(time/(60*60));
+	arr.push(hour);
+	let m=Math.floor(time%(60*60)/60);
+	arr.push(m);
+	let s=Math.floor(time%(60*60)%60);
+	arr.push(s);
+	arr.forEach((e,i)=>{
+		date[i].innerHTML=e;
+	})
+	return date;
+}
+</script>
 	    <div class="ul">
 		    <li>
 		        <img src="image/34.jpg" alt="">
@@ -2196,7 +2218,7 @@
 			<div class="linke">
 				<ul>
 					<li class="one">
-						<div class="imgs">
+						<div class="imgs zx">
 							<p>图书</p>
 						    <a href="" class="exposure">哈利·波特与被诅咒的孩子</a>
 						    <a href="">“哈利·波特”第八个故事中文版震撼来袭！特别彩排版剧本！</a>
@@ -2218,7 +2240,7 @@
 						    <img src="image/72.png" alt="">	
 						</div>
 						<div class="lbd">
-							<div class="bottom"></div>
+							<div class="bottom active"></div>
 							<div class="bottom"></div>
 							<div class="bottom"></div>
 						</div>
@@ -2226,18 +2248,59 @@
 						<div class="left">&lt;</div>
 					</li>
 					<script>
-						let imgsOne=document.querySelectorAll(".content .linke ul .one .imgs");
-						let dotsOne=document.querySelectorAll(".content .linke ul .one .bottom");
-						let lisOne=document.querySelectorAll(".content .linke ul .one");
-						let widthsOne=parseInt(getComputedStyle(lisOne[0],null).width);
-						let leftBtnOne=document.querySelectorAll(".content .linke ul .one .left")[0];
-						let rightBtnOne=document.querySelectorAll(".content .linke ul .one .right")[0];
-						console.log(imgsOne,dotsOne,widthsOne,leftBtnOne,rightBtnOne);
-						banner_dj(imgsOne,dotsOne,leftBtnOne,rightBtnOne,widthsOne,"active");
-
+						// let imgsOne=document.querySelectorAll(".content .linke ul .one .imgs");
+						// let dotsOne=document.querySelectorAll(".content .linke ul .one .bottom");
+						// let lisOne=document.querySelectorAll(".content .linke ul .one");
+						// let widthsOne=parseInt(getComputedStyle(lisOne[0],null).width);
+						// let leftBtnOne=document.querySelectorAll(".content .linke ul .one .left")[0];
+						// let rightBtnOne=document.querySelectorAll(".content .linke ul .one .right")[0];
+						// console.log(imgsOne,dotsOne,widthsOne,leftBtnOne,rightBtnOne);
+						// banner_dj(imgsOne,dotsOne,leftBtnOne,rightBtnOne,widthsOne,"active");
+						let imgsOne=$(".content .linke ul .one .imgs");
+						let dotsOne=$(".content .linke ul .one .bottom");
+						let leftBtnOne=$(".content .linke ul .one .left");
+						let rightBtnOne=$(".content .linke ul .one .right");
+						let flag=true;
+						let nows=0,pre=0;
+						function djl1(){
+							if(!flag){
+     		                    return;
+     	                    }
+							if(nows==0){
+								return;
+							}
+							flag=false;
+							nows--;
+							imgsOne.eq(pre).animate({left:`296px`},500);
+							imgsOne.eq(nows).animate({left:0},500, function(){flag=true;});
+							dotsOne.eq(pre).removeClass('active');
+							dotsOne.eq(nows).addClass('active');
+							pre=nows;
+						}
+						function djr1(){
+							if(!flag){
+     		                    return;
+                        	}
+							if(nows==imgsOne.length-1){
+								return;
+							}
+							flag=false;
+							nows++;
+							imgsOne.eq(pre).animate({left:`-296px`},500);
+							imgsOne.eq(nows).animate({left:0},500, function(){flag=true;});
+							dotsOne.eq(pre).removeClass('active');
+							dotsOne.eq(nows).addClass('active');
+							pre=nows;
+						}
+						leftBtnOne.click(function(){
+							djl1();				
+						})
+						rightBtnOne.click(function(){
+							djr1();				
+						})
 					</script>
 					<li class="two">
-						<div class="imgs">
+						<div class="imgs zx">
 							<p>图书</p>
 						    <a href="" class="exposure">哈利·波特与被诅咒的孩子</a>
 						    <a href="">“哈利·波特”第八个故事中文版震撼来袭！特别彩排版剧本！</a>
@@ -2266,7 +2329,7 @@
 						    <img src="image/72.png" alt="">	
 						</div>
 						<div class="lbd">
-							<div class="bottom"></div>
+							<div class="bottom active"></div>
 							<div class="bottom"></div>
 							<div class="bottom"></div>
 							<div class="bottom"></div>
@@ -2275,17 +2338,60 @@
 						<div class="left">&lt;</div>
 					</li>
 					<script>
-						let imgsTwo=document.querySelectorAll(".content .linke ul .two .imgs");
-						let dotsTwo=document.querySelectorAll(".content .linke ul .two .bottom");
-						let lisTwo=document.querySelectorAll(".content .linke ul .two");
-						let widthsTwo=parseInt(getComputedStyle(lisTwo[0],null).width);
-						let leftBtnTwo=document.querySelectorAll(".content .linke ul .two .left")[0];
-						let rightBtnTwo=document.querySelectorAll(".content .linke ul .two .right")[0];
-						console.log(imgsTwo,dotsTwo,widthsTwo,leftBtnTwo,rightBtnTwo);
-						banner_dj(imgsTwo,dotsTwo,leftBtnTwo,rightBtnTwo,widthsTwo,"active");
+						// let imgsTwo=document.querySelectorAll(".content .linke ul .two .imgs");
+						// let dotsTwo=document.querySelectorAll(".content .linke ul .two .bottom");
+						// let lisTwo=document.querySelectorAll(".content .linke ul .two");
+						// let widthsTwo=parseInt(getComputedStyle(lisTwo[0],null).width);
+						// let leftBtnTwo=document.querySelectorAll(".content .linke ul .two .left")[0];
+						// let rightBtnTwo=document.querySelectorAll(".content .linke ul .two .right")[0];
+						// console.log(imgsTwo,dotsTwo,widthsTwo,leftBtnTwo,rightBtnTwo);
+						// banner_dj(imgsTwo,dotsTwo,leftBtnTwo,rightBtnTwo,widthsTwo,"active");
+						let imgsTwo=$(".content .linke ul .two .imgs");
+						let dotsTwo=$(".content .linke ul .two .bottom");
+						let leftBtnTwo=$(".content .linke ul .two .left");
+						let rightBtnTwo=$(".content .linke ul .two .right");
+						nows=0,pre=0;
+						flag=true;
+						function djl2(){
+							if(!flag){
+     		                    return;
+     	                    }
+							if(nows==0){
+								return;
+							}
+							flag=false;
+							nows--;
+							imgsTwo.eq(pre).animate({left:`296px`},500);
+							imgsTwo.eq(nows).animate({left:0},500, function(){flag=true;});
+							dotsTwo.eq(pre).removeClass('active');
+							dotsTwo.eq(nows).addClass('active');
+							pre=nows;
+						}
+						function djr2(){
+							if(!flag){
+     		                    return;
+                        	}
+							if(nows==imgsTwo.length-1){
+								return;
+							}
+							flag=false;
+							nows++;
+							imgsTwo.eq(pre).animate({left:`-296px`},500);
+							imgsTwo.eq(nows).animate({left:0},500,function(){
+	 		                    flag=true;});
+							dotsTwo.eq(pre).removeClass('active');
+							dotsTwo.eq(nows).addClass('active');
+							pre=nows;
+						}
+						leftBtnTwo.click(function(){
+							djl2();				
+						})
+						rightBtnTwo.click(function(){
+							djr2();				
+						})
 					</script>
 					<li class="three">
-						<div class="imgs">
+						<div class="imgs zx">
 							<p>图书</p>
 						    <a href="" class="exposure">哈利·波特与被诅咒的孩子</a>
 						    <a href="">“哈利·波特”第八个故事中文版震撼来袭！特别彩排版剧本！</a>
@@ -2314,7 +2420,7 @@
 						    <img src="image/72.png" alt="">	
 						</div>
 						<div class="lbd">
-							<div class="bottom"></div>
+							<div class="bottom active"></div>
 							<div class="bottom"></div>
 							<div class="bottom"></div>
 							<div class="bottom"></div>
@@ -2323,17 +2429,60 @@
 						<div class="left">&lt;</div>
 					</li>
 					<script>
-						let imgsThree=document.querySelectorAll(".content .linke ul .three .imgs");
-						let dotsThree=document.querySelectorAll(".content .linke ul .three .bottom");
-						let lisThree=document.querySelectorAll(".content .linke ul .three");
-						let widthsThree=parseInt(getComputedStyle(lisThree[0],null).width);
-						let leftBtnThree=document.querySelectorAll(".content .linke ul .three .left")[0];
-						let rightBtnThree=document.querySelectorAll(".content .linke ul .three .right")[0];
-						console.log(imgsThree,dotsThree,widthsThree,leftBtnThree,rightBtnThree);
-						banner_dj(imgsThree,dotsThree,leftBtnThree,rightBtnThree,widthsThree,"active");
+						// let imgsThree=document.querySelectorAll(".content .linke ul .three .imgs");
+						// let dotsThree=document.querySelectorAll(".content .linke ul .three .bottom");
+						// let lisThree=document.querySelectorAll(".content .linke ul .three");
+						// let widthsThree=parseInt(getComputedStyle(lisThree[0],null).width);
+						// let leftBtnThree=document.querySelectorAll(".content .linke ul .three .left")[0];
+						// let rightBtnThree=document.querySelectorAll(".content .linke ul .three .right")[0];
+						// console.log(imgsThree,dotsThree,widthsThree,leftBtnThree,rightBtnThree);
+						// banner_dj(imgsThree,dotsThree,leftBtnThree,rightBtnThree,widthsThree,"active");
+						let imgsThree=$(".content .linke ul .three .imgs");
+						let dotsThree=$(".content .linke ul .three .bottom");
+						let leftBtnThree=$(".content .linke ul .three .left");
+						let rightBtnThree=$(".content .linke ul .three .right");
+						nows=0,pre=0;
+						flag=true;
+						function djl4(){
+							if(!flag){
+     		                    return;
+     	                    }
+							if(nows==0){
+								return;
+							}
+							flag=false;
+							nows--;
+							imgsThree.eq(pre).animate({left:`296px`},500);
+							imgsThree.eq(nows).animate({left:0},500, function(){flag=true;});
+							dotsThree.eq(pre).removeClass('active');
+							dotsThree.eq(nows).addClass('active');
+							pre=nows;
+						}
+						function djr4(){
+							if(!flag){
+     		                    return;
+                        	}
+							if(nows==imgsThree.length-1){
+								return;
+							}
+							flag=false;
+							nows++;
+							imgsThree.eq(pre).animate({left:`-296px`},500);
+							imgsThree.eq(nows).animate({left:0},500,function(){
+	 		                    flag=true;});
+							dotsThree.eq(pre).removeClass('active');
+							dotsThree.eq(nows).addClass('active');
+							pre=nows;
+						}
+						leftBtnThree.click(function(){
+							djl4();				
+						})
+						rightBtnThree.click(function(){
+							djr4();				
+						})
 					</script>
 					<li class="four">
-						<div class="imgs">
+						<div class="imgs zx">
 							<p>图书</p>
 						    <a href="" class="exposure">哈利·波特与被诅咒的孩子</a>
 						    <a href="">“哈利·波特”第八个故事中文版震撼来袭！特别彩排版剧本！</a>
@@ -2362,7 +2511,7 @@
 						    <img src="image/72.png" alt="">	
 						</div>
 						<div class="lbd">
-							<div class="bottom"></div>
+							<div class="bottom active"></div>
 							<div class="bottom"></div>
 							<div class="bottom"></div>
 							<div class="bottom"></div>
@@ -2371,14 +2520,57 @@
 						<div class="left">&lt;</div>
 					</li>
 					<script>
-						let imgsFour=document.querySelectorAll(".content .linke ul .four .imgs");
-						let dotsFour=document.querySelectorAll(".content .linke ul .four .bottom");
-						let lisFour=document.querySelectorAll(".content .linke ul .four");
-						let widthsFour=parseInt(getComputedStyle(lisFour[0],null).width);
-						let leftBtnFour=document.querySelectorAll(".content .linke ul .four .left")[0];
-						let rightBtnFour=document.querySelectorAll(".content .linke ul .four .right")[0];
-						console.log(imgsFour,dotsFour,widthsFour,leftBtnFour,rightBtnFour);
-						banner_dj(imgsFour,dotsFour,leftBtnFour,rightBtnFour,widthsFour,"active");
+						// let imgsFour=document.querySelectorAll(".content .linke ul .four .imgs");
+						// let dotsFour=document.querySelectorAll(".content .linke ul .four .bottom");
+						// let lisFour=document.querySelectorAll(".content .linke ul .four");
+						// let widthsFour=parseInt(getComputedStyle(lisFour[0],null).width);
+						// let leftBtnFour=document.querySelectorAll(".content .linke ul .four .left")[0];
+						// let rightBtnFour=document.querySelectorAll(".content .linke ul .four .right")[0];
+						// console.log(imgsFour,dotsFour,widthsFour,leftBtnFour,rightBtnFour);
+						// banner_dj(imgsFour,dotsFour,leftBtnFour,rightBtnFour,widthsFour,"active");
+						let imgsFour=$(".content .linke ul .four .imgs");
+						let dotsFour=$(".content .linke ul .four .bottom");
+						let leftBtnFour=$(".content .linke ul .four .left");
+						let rightBtnFour=$(".content .linke ul .four .right");
+						nows=0,pre=0;
+						flag=true;
+						function djl3(){
+							if(!flag){
+     		                    return;
+     	                    }
+							if(nows==0){
+								return;
+							}
+							flag=false;
+							nows--;
+							imgsFour.eq(pre).animate({left:`296px`},500);
+							imgsFour.eq(nows).animate({left:0},500, function(){flag=true;});
+							dotsFour.eq(pre).removeClass('active');
+							dotsFour.eq(nows).addClass('active');
+							pre=nows;
+						}
+						function djr3(){
+							if(!flag){
+     		                    return;
+                        	}
+							if(nows==imgsFour.length-1){
+								return;
+							}
+							flag=false;
+							nows++;
+							imgsFour.eq(pre).animate({left:`-296px`},500);
+							imgsFour.eq(nows).animate({left:0},500,function(){
+	 		                    flag=true;});
+							dotsFour.eq(pre).removeClass('active');
+							dotsFour.eq(nows).addClass('active');
+							pre=nows;
+						}
+						leftBtnFour.click(function(){
+							djl3();				
+						})
+						rightBtnFour.click(function(){
+							djr3();				
+						})
 					</script>
 				</ul>
 			</div>
